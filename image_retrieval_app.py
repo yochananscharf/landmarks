@@ -26,7 +26,7 @@ if 'count' not in st.session_state:
     model.load_state_dict(hub.load_state_dict_from_url(url=
             "https://dl.fbaipublicfiles.com/dino/dino_vitsmall16_googlelandmark_pretrain/dino_vitsmall16_googlelandmark_pretrain.pth"))
 
-    model = model.cuda()
+    #model = model.cuda()
     model.eval()
     transform = get_transform()
     #xml = json_file.read()
@@ -96,7 +96,7 @@ else:
     if st.session_state.json_file is not None:
         #st.session_state.tagging_path = "tagged_{}.txt".format(st.session_state.json_file.name.split('.')[0])
         st.session_state.vector_dict = json.load(st.session_state.json_file)
-        st.session_state.vector_vals = torch.stack([torch.tensor(v) for v in st.session_state.vector_dict.values()]).cuda()
+        st.session_state.vector_vals = torch.stack([torch.tensor(v) for v in st.session_state.vector_dict.values()])#.cuda()
         st.session_state.vector_keys = [k for k in st.session_state.vector_dict.keys()]
         num_keys = len(st.session_state.vector_keys)
         # get first key to update images-dir
