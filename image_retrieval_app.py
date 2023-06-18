@@ -14,7 +14,8 @@ st.header('Image Retrieval App', anchor='center') #:sunglasses:')
 
 col1, col2 = st.columns(2)
 
-IMAGES_DIR = 'C:/Users/yocha/data-mining/deep-learning/project/PhotoTourism/Train/'#'D:/data/mapillary/map_data/tiles/'
+#IMAGES_DIR = 'C:/Users/yocha/data-mining/deep-learning/project/PhotoTourism/Train/'#'D:/data/mapillary/map_data/tiles/'
+IMAGES_DIR = 'images/museum/'#'D:/data/mapillary/map_data/tiles/'
 @st.cache_resource
 def get_transform():
     resize = transforms.Resize((512,512))
@@ -81,7 +82,8 @@ if  st.session_state.vector_dict != None:
         vec = predict_query_image(image)
         img_pos_name = get_top_n(vec)
         landmark_dir = st.session_state.image_dict[img_pos_name][0]
-        image_pos = Image.open(IMAGES_DIR+landmark_dir+'/'+img_pos_name).convert('RGB') 
+        #image_pos = Image.open(IMAGES_DIR+landmark_dir+'/'+img_pos_name).convert('RGB') 
+        image_pos = Image.open(IMAGES_DIR+landmark_dir+'.jpg').convert('RGB') 
       
         col1.write('query-image')
         col1.image(image.resize((512,512)), width=512)
