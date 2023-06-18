@@ -35,8 +35,8 @@ def distance_to_vectors(vec, vecs):
 
 
 if 'count' not in st.session_state:
-    model = hub.load('facebookresearch/dino:main', 'dino_vits16', pretrained=True, map_location='cpu')
-    model.load_state_dict(hub.load_state_dict_from_url(url=
+    st.session_state.model = hub.load('facebookresearch/dino:main', 'dino_vits16', pretrained=True, map_location='cpu')
+    st.session_state.model.load_state_dict(hub.load_state_dict_from_url(url=
             "https://dl.fbaipublicfiles.com/dino/dino_vitsmall16_googlelandmark_pretrain/dino_vitsmall16_googlelandmark_pretrain.pth"))
 
     #model = model.cuda()
