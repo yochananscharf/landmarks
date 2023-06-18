@@ -100,9 +100,13 @@ if  st.session_state.vector_dict != None:
 else:
     #json_filePath = 'pairs_tagged_29_3_new.json'#'D:/Data/mapillary/map_data/rml_triplets_174.json' #pairs_tagged_29_3_new.json
     #st.session_state.json_file = st.file_uploader('choose vector database (.json)')
-    st.session_state.json_file = open('features_dict_landmarks.json')
-    st.session_state.json_file_1 = open('img_to_landmark.json')
-
+    LANDMARKS = False
+    if LANDMARKS:
+        st.session_state.json_file = open('features_dict_landmarks.json')
+        st.session_state.json_file_1 = open('img_to_landmark.json')
+    else: #museum
+        st.session_state.json_file = open('features_dict_museum.json')
+        st.session_state.json_file_1 = open('img_to_exhibit.json')
     if st.session_state.json_file is not None:
         #st.session_state.tagging_path = "tagged_{}.txt".format(st.session_state.json_file.name.split('.')[0])
         st.write('Loading vectors ...')
