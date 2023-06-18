@@ -7,6 +7,7 @@ from PIL import Image
 import json
 from PIL import Image
 
+USE_CUDA = False
 
 st.set_page_config(layout="wide")
 st.title('Image Retrieval App') #:sunglasses:')
@@ -22,9 +23,10 @@ def get_transform():
     return transform
 
 if 'count' not in st.session_state:
-    model = hub.load('facebookresearch/dino:main', 'dino_vits16', pretrained=True)
+    model = hub.load('facebookresearch/dino:main', 'dino_vits16', pretrained=True, map_location=torch.device('cpu'))
     model.load_state_dict(hub.load_state_dict_from_url(url=
-            "https://dl.fbaipublicfiles.com/dino/dino_vitsmall16_googlelandmark_pretrain/dino_vitsmall16_googlelandmark_pretrain.pth"))
+            "https://dl.fbaipublicfiles.com/dino/dino_vitsmall16_googlelandmark_pretrain/dino_vitsmall16_googlelandmark_pretrain.pth"),
+            map_location=torch.device('cpu'))
 
     #model = model.cuda()
     model.eval()
